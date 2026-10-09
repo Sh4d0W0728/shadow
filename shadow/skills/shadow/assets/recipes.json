@@ -1,0 +1,1721 @@
+{
+  "schema_version": 1,
+  "language": "zh-CN",
+  "purpose": "按主要目标提供可覆盖的剪辑起点，减少从零构思；配方选择不替代看素材、试听和用户要求。",
+  "selection_policy": {
+    "method": "query_tags 关键词候选匹配，再按 priority_signal 与真实素材核对",
+    "fallback_recipe": "general-story",
+    "confidence_note": "关键词匹配是暂定路由，不是语义理解、素材内容识别或用户意图确认。命中多个配方时按主导目标选一个，其余只补必要技巧。",
+    "user_spec_precedence": true,
+    "start_with_core_only": true,
+    "optional_technique_hint": "每次只加几个能说明用途的技巧；数目不是限制。",
+    "parameters_are": "heuristic_starting_points_not_requirements",
+    "read_references": "只读所选工作流及引用技巧；Premiere 交付时再读 premiere.md。"
+  },
+  "implementation_levels": {
+    "core_hard_cut": "可用基础入出点和硬切时间线表达；支持情况仍按实际脚本验证，不能推断自动选镜或原声联动。",
+    "editorial_plan": "人工/AI看素材与试听后提出决策，计划本身不等于执行效果。",
+    "premiere_manual": "Premiere 原生可实现，当前基础脚本不自动执行。",
+    "conditional_preprocess": "只在对应脚本、依赖、参数与结果测试都确认时报告实际完成。",
+    "shadow_v2": "shadow.py v2 执行转场、透明标题字幕、静态图与视频渲染；PR 交接方式见报告。",
+    "local_asr": "subtitles.py 真实本地音频识别和文稿校正，输出时间戳/SRT/复核报告。"
+  },
+  "technique_index": [
+    {
+      "id": "S01",
+      "name": "先组故事骨架",
+      "intent": "story",
+      "tags": [
+        "叙事",
+        "主线",
+        "结构"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "S02",
+      "name": "首屏承诺 / 问题钩子",
+      "intent": "story",
+      "tags": [
+        "钩子",
+        "开头",
+        "首屏",
+        "结果"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut",
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "S03",
+      "name": "冷开场",
+      "intent": "story",
+      "tags": [
+        "冷开场",
+        "精彩开场"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "S04",
+      "name": "纸面剪辑 / 反向提纲",
+      "intent": "story",
+      "tags": [
+        "转录",
+        "采访",
+        "讲解",
+        "提纲"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "S05",
+      "name": "铺垫—递进—兑现",
+      "intent": "story",
+      "tags": [
+        "递进",
+        "铺垫",
+        "高潮",
+        "结果"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "S06",
+      "name": "动作—反应",
+      "intent": "story",
+      "tags": [
+        "反应",
+        "人物",
+        "情绪"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "S07",
+      "name": "平行剪辑",
+      "intent": "story",
+      "tags": [
+        "平行",
+        "对照",
+        "紧张"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "S08",
+      "name": "延后揭示 / 信息分配",
+      "intent": "story",
+      "tags": [
+        "揭示",
+        "线索",
+        "悬念"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "S09",
+      "name": "省略重复过程",
+      "intent": "story",
+      "tags": [
+        "省略",
+        "重复",
+        "等待",
+        "压缩"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "S10",
+      "name": "章节地标",
+      "intent": "story",
+      "tags": [
+        "章节",
+        "地点",
+        "步骤"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut",
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "C01",
+      "name": "有动机的硬切",
+      "intent": "continuity",
+      "tags": [
+        "硬切",
+        "衔接",
+        "基础"
+      ],
+      "implementation": [
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "C02",
+      "name": "动作接剪",
+      "intent": "continuity",
+      "tags": [
+        "动作",
+        "连贯",
+        "接剪"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "C03",
+      "name": "形状 / 动作匹配剪辑",
+      "intent": "continuity",
+      "tags": [
+        "匹配",
+        "图形",
+        "match cut"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "C04",
+      "name": "视线与主体位置衔接",
+      "intent": "continuity",
+      "tags": [
+        "视线",
+        "轴线",
+        "主体位置"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "C05",
+      "name": "全景—中景—细节",
+      "intent": "continuity",
+      "tags": [
+        "景别",
+        "空间",
+        "细节"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "C06",
+      "name": "插入镜头 / Cutaway",
+      "intent": "continuity",
+      "tags": [
+        "插入",
+        "cutaway",
+        "采访",
+        "接缝"
+      ],
+      "implementation": [
+        "core_hard_cut",
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "C07",
+      "name": "有意跳切",
+      "intent": "continuity",
+      "tags": [
+        "跳切",
+        "口播",
+        "jump cut"
+      ],
+      "implementation": [
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "C08",
+      "name": "运动方向一致",
+      "intent": "continuity",
+      "tags": [
+        "运动",
+        "方向",
+        "空间"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "R01",
+      "name": "乐句切点",
+      "intent": "rhythm",
+      "tags": [
+        "乐句",
+        "小节",
+        "音乐结构"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "R02",
+      "name": "重拍同步",
+      "intent": "rhythm",
+      "tags": [
+        "卡点",
+        "重拍",
+        "beat"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "R03",
+      "name": "反拍 / 切分",
+      "intent": "rhythm",
+      "tags": [
+        "反拍",
+        "切分",
+        "变化"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "R04",
+      "name": "节奏递进",
+      "intent": "rhythm",
+      "tags": [
+        "递进",
+        "密度",
+        "加速"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "R05",
+      "name": "长镜停留 / 释放",
+      "intent": "rhythm",
+      "tags": [
+        "停留",
+        "留白",
+        "情绪",
+        "呼吸"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "R06",
+      "name": "恒速慢动作",
+      "intent": "rhythm",
+      "tags": [
+        "慢动作",
+        "恒速",
+        "slow motion"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "R07",
+      "name": "速度渐变 / Speed ramp",
+      "intent": "rhythm",
+      "tags": [
+        "速度渐变",
+        "变速",
+        "speed ramp"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "R08",
+      "name": "视觉母题重复",
+      "intent": "rhythm",
+      "tags": [
+        "母题",
+        "意象",
+        "呼应"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "R09",
+      "name": "同屏比较 / 分屏",
+      "intent": "rhythm",
+      "tags": [
+        "分屏",
+        "对比",
+        "比较"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "A01",
+      "name": "先剪对白主线",
+      "intent": "audio",
+      "tags": [
+        "对白",
+        "原声",
+        "采访",
+        "讲解"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    },
+    {
+      "id": "A02",
+      "name": "J cut",
+      "intent": "audio",
+      "tags": [
+        "J cut",
+        "J-cut",
+        "声音先入"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "A03",
+      "name": "L cut",
+      "intent": "audio",
+      "tags": [
+        "L cut",
+        "L-cut",
+        "原声延续"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "A04",
+      "name": "Room tone / 环境底",
+      "intent": "audio",
+      "tags": [
+        "环境底",
+        "room tone",
+        "接缝"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "A05",
+      "name": "对白优先压音乐",
+      "intent": "audio",
+      "tags": [
+        "ducking",
+        "压音乐",
+        "对白",
+        "背景音乐"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "A06",
+      "name": "声音桥",
+      "intent": "audio",
+      "tags": [
+        "声音桥",
+        "现场声",
+        "原声"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "A07",
+      "name": "少量音效标点",
+      "intent": "audio",
+      "tags": [
+        "音效",
+        "标点",
+        "强调"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "A08",
+      "name": "音频交叉淡化",
+      "intent": "audio",
+      "tags": [
+        "淡化",
+        "crossfade",
+        "接缝"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "A09",
+      "name": "响度与峰值整理",
+      "intent": "audio",
+      "tags": [
+        "响度",
+        "峰值",
+        "音量",
+        "LUFS"
+      ],
+      "implementation": [
+        "premiere_manual",
+        "conditional_preprocess"
+      ]
+    },
+    {
+      "id": "V01",
+      "name": "先匹配曝光和白平衡",
+      "intent": "visual",
+      "tags": [
+        "曝光",
+        "白平衡",
+        "匹配"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "V02",
+      "name": "统一风格调色",
+      "intent": "visual",
+      "tags": [
+        "调色",
+        "LUT",
+        "色彩"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "V03",
+      "name": "选择性防抖",
+      "intent": "visual",
+      "tags": [
+        "防抖",
+        "稳定",
+        "手持"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "V04",
+      "name": "构图重整",
+      "intent": "visual",
+      "tags": [
+        "构图",
+        "放大",
+        "裁切"
+      ],
+      "implementation": [
+        "premiere_manual",
+        "conditional_preprocess"
+      ]
+    },
+    {
+      "id": "V05",
+      "name": "有动机的叠化",
+      "intent": "visual",
+      "tags": [
+        "叠化",
+        "dissolve",
+        "回忆"
+      ],
+      "implementation": [
+        "premiere_manual",
+        "shadow_v2"
+      ]
+    },
+    {
+      "id": "V06",
+      "name": "黑场 / 淡黑",
+      "intent": "visual",
+      "tags": [
+        "黑场",
+        "淡黑",
+        "段落"
+      ],
+      "implementation": [
+        "premiere_manual",
+        "shadow_v2"
+      ]
+    },
+    {
+      "id": "V07",
+      "name": "借运动的转场",
+      "intent": "visual",
+      "tags": [
+        "转场",
+        "甩镜",
+        "遮挡",
+        "运动"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut",
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "V08",
+      "name": "温和 Punch-in",
+      "intent": "visual",
+      "tags": [
+        "punch-in",
+        "放大",
+        "口播"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "V09",
+      "name": "定格 / 停顿强调",
+      "intent": "visual",
+      "tags": [
+        "定格",
+        "freeze frame",
+        "强调"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "V10",
+      "name": "有信息的 B-roll",
+      "intent": "visual",
+      "tags": [
+        "B-roll",
+        "broll",
+        "空镜",
+        "补充镜头"
+      ],
+      "implementation": [
+        "core_hard_cut",
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "T01",
+      "name": "可读字幕",
+      "intent": "text",
+      "tags": [
+        "字幕",
+        "可读",
+        "caption"
+      ],
+      "implementation": [
+        "premiere_manual",
+        "shadow_v2"
+      ]
+    },
+    {
+      "id": "T02",
+      "name": "语义组句与同步",
+      "intent": "text",
+      "tags": [
+        "组句",
+        "断行",
+        "字幕同步"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "premiere_manual",
+        "local_asr"
+      ]
+    },
+    {
+      "id": "T03",
+      "name": "文字层级",
+      "intent": "text",
+      "tags": [
+        "文字",
+        "层级",
+        "标题"
+      ],
+      "implementation": [
+        "premiere_manual",
+        "shadow_v2"
+      ]
+    },
+    {
+      "id": "T04",
+      "name": "步骤标注与指示",
+      "intent": "text",
+      "tags": [
+        "步骤",
+        "箭头",
+        "指示",
+        "教学"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "T05",
+      "name": "歌词作为节奏线索",
+      "intent": "text",
+      "tags": [
+        "歌词",
+        "LRC",
+        "意象",
+        "MV"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "T06",
+      "name": "有目的的结尾卡",
+      "intent": "text",
+      "tags": [
+        "CTA",
+        "结尾卡",
+        "行动引导"
+      ],
+      "implementation": [
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "D01",
+      "name": "保留精剪余量",
+      "intent": "delivery",
+      "tags": [
+        "可编辑",
+        "交接",
+        "余量"
+      ],
+      "implementation": [
+        "core_hard_cut",
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "D02",
+      "name": "横竖版独立构图",
+      "intent": "delivery",
+      "tags": [
+        "横竖版",
+        "适配",
+        "9:16",
+        "16:9"
+      ],
+      "implementation": [
+        "premiere_manual",
+        "conditional_preprocess"
+      ]
+    },
+    {
+      "id": "D03",
+      "name": "有意循环结尾",
+      "intent": "delivery",
+      "tags": [
+        "循环",
+        "loop",
+        "无缝"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut",
+        "premiere_manual"
+      ]
+    },
+    {
+      "id": "D04",
+      "name": "从长片提取独立段落",
+      "intent": "delivery",
+      "tags": [
+        "拆条",
+        "长转短",
+        "摘录",
+        "再利用"
+      ],
+      "implementation": [
+        "editorial_plan",
+        "core_hard_cut"
+      ]
+    }
+  ],
+  "recipes": [
+    {
+      "id": "mv-lyrics",
+      "name": "歌词驱动 MV",
+      "query_tags": [
+        "歌词",
+        "歌词MV",
+        "歌词 mv",
+        "抒情MV",
+        "抒情 mv",
+        "音乐MV",
+        "音乐 mv",
+        "LRC",
+        "lyric",
+        "lyrics",
+        "音乐录影带",
+        "歌曲叙事"
+      ],
+      "priority_signal": "歌词含义、歌曲情绪或意象是主要目标；只出现 MV 一词不足以确定是歌词驱动。",
+      "core_techniques": [
+        "S01",
+        "R01",
+        "R05",
+        "R08",
+        "T05"
+      ],
+      "optional_techniques": [
+        "R02",
+        "R04",
+        "C03",
+        "V05",
+        "T01"
+      ],
+      "structure": [
+        "核对实际音频和歌词",
+        "按真实乐段写情绪功能",
+        "用少量意象建立呼应",
+        "在情绪落点停留",
+        "按歌曲尾奏收束"
+      ],
+      "pacing_defaults": {
+        "unit": "lyric_phrase_or_musical_phrase",
+        "shot_seconds_hint": [
+          2,
+          6
+        ],
+        "emotional_hold_seconds_hint": [
+          4,
+          8
+        ],
+        "pilot_seconds_hint": [
+          15,
+          30
+        ],
+        "note": "乐句、歌词与动作优先；不按固定秒数截句。"
+      },
+      "audio_defaults": {
+        "primary": "当前指定歌曲的实际可用音频",
+        "speech_priority": "only_if_requested_or_story_requires",
+        "auto_ducking": false,
+        "loudness_target_lufs": null,
+        "note": "存在歌词文件不等于要求烧录字幕；无完整音频不能报告完整 MV。"
+      },
+      "output_defaults": {
+        "duration": "用户指定范围，否则实际歌曲范围",
+        "aspect_ratio": "user_spec_else_existing_sequence",
+        "fps": "user_spec_else_existing_sequence_else_source_appropriate",
+        "premiere_handoff": "verified_supported_xmeml_plus_manual_finish_list",
+        "baked_captions": false
+      },
+      "avoid": [
+        "套用以前的歌曲、角色或比例",
+        "逐字找物件而失去情绪",
+        "每拍都切",
+        "把歌词字幕计划称作已实现字幕"
+      ],
+      "verification": [
+        "歌曲/歌手/音频/歌词/工程/导出身份相符",
+        "指定音频范围完整",
+        "情绪段落有变化",
+        "歌词时间和含义正确",
+        "参数实测"
+      ]
+    },
+    {
+      "id": "music-montage",
+      "name": "卡点 / 动作蒙太奇",
+      "query_tags": [
+        "卡点",
+        "混剪卡点",
+        "节奏混剪",
+        "动作混剪",
+        "燃向",
+        "beat montage",
+        "montage",
+        "重拍",
+        "音乐蒙太奇",
+        "运动视频"
+      ],
+      "priority_signal": "音乐节奏、动作峰值和视觉能量主导，歌词并非必要叙事线。",
+      "core_techniques": [
+        "R01",
+        "R02",
+        "R04",
+        "C02",
+        "C08"
+      ],
+      "optional_techniques": [
+        "R03",
+        "R05",
+        "R06",
+        "R07",
+        "V07",
+        "A07"
+      ],
+      "structure": [
+        "核对音乐段落",
+        "建立环境和动作",
+        "逐步缩短镜头增强动作",
+        "峰值对齐重拍",
+        "释放并结束"
+      ],
+      "pacing_defaults": {
+        "unit": "music_beats_with_action_priority",
+        "beats_per_cut_hint": [
+          2,
+          4
+        ],
+        "peak_beats_per_cut_hint": 1,
+        "shot_seconds_hint": [
+          1,
+          4
+        ],
+        "note": "拍点是候选，需试听；峰值短暂加密，不能强制每拍切。"
+      },
+      "audio_defaults": {
+        "primary": "指定音乐",
+        "source_sound": "保留有功能的动作声",
+        "auto_ducking": false,
+        "loudness_target_lufs": null,
+        "note": "音效少量点缀；当前不承诺自动拍点检测。"
+      },
+      "output_defaults": {
+        "duration": "user_spec_else_music_segment",
+        "aspect_ratio": "user_spec_else_existing_sequence",
+        "fps": "user_spec_else_existing_sequence_else_source_appropriate",
+        "premiere_handoff": "basic_hard_cut_xml_then_native_speed_ramps_if_needed"
+      },
+      "avoid": [
+        "无意义超短镜",
+        "把帧率统一当成慢动作",
+        "用随机效果代替动作峰值",
+        "把变速建议称为已应用"
+      ],
+      "verification": [
+        "关键重拍试听",
+        "动作起止完整可读",
+        "高潮有递进",
+        "需要的变速实际在 Premiere 检查",
+        "没有无意闪切"
+      ]
+    },
+    {
+      "id": "character-cinematic",
+      "name": "人物 / 影视混剪",
+      "query_tags": [
+        "影视混剪",
+        "人物混剪",
+        "角色",
+        "角色弧光",
+        "电影感",
+        "cinematic",
+        "character",
+        "电影混剪",
+        "人物弧线",
+        "情绪混剪"
+      ],
+      "priority_signal": "表达当前角色的变化、冲突、关系或情绪；电影感一词本身不指定技术参数。",
+      "core_techniques": [
+        "S01",
+        "S06",
+        "R05",
+        "R08",
+        "C03"
+      ],
+      "optional_techniques": [
+        "S07",
+        "S08",
+        "A06",
+        "V01",
+        "V02",
+        "V05"
+      ],
+      "structure": [
+        "锁定角色与素材版本",
+        "建立人物状态",
+        "行动/冲突/代价",
+        "选择或情绪转变",
+        "母题呼应与结果"
+      ],
+      "pacing_defaults": {
+        "unit": "story_action_or_emotion",
+        "shot_seconds_hint": [
+          2,
+          5
+        ],
+        "emotional_hold_seconds_hint": [
+          4,
+          8
+        ],
+        "note": "情绪和原声句子优先，高潮不一定更快。"
+      },
+      "audio_defaults": {
+        "primary": "用户指定配乐或当前角色原声",
+        "source_dialogue": "核对说话人与上下文",
+        "auto_ducking": false,
+        "loudness_target_lufs": null
+      },
+      "output_defaults": {
+        "duration": "user_spec_else_story_need",
+        "aspect_ratio": "user_spec_else_existing_sequence",
+        "fps": "user_spec_else_existing_sequence_else_source_appropriate",
+        "premiere_handoff": "basic_structure_plus_native_audio_color_finish"
+      },
+      "avoid": [
+        "漂亮镜头无因果地堆叠",
+        "不同角色台词重新归属",
+        "自动加宽银幕黑边",
+        "把库存画面当成真实剧情证据"
+      ],
+      "verification": [
+        "角色/作品/版本正确",
+        "台词原意完整",
+        "场景与表达关系成立",
+        "情绪转变有铺垫",
+        "媒体来源与范围有记录"
+      ]
+    },
+    {
+      "id": "talking-head",
+      "name": "口播 / 讲解",
+      "query_tags": [
+        "口播",
+        "讲解",
+        "talking head",
+        "talking-head",
+        "自媒体口播",
+        "演讲",
+        "播客视频",
+        "解说",
+        "去口头语"
+      ],
+      "priority_signal": "主要内容由一个或少数说话人直接表达，先保证可听性和原意。",
+      "core_techniques": [
+        "A01",
+        "S04",
+        "C07",
+        "T01",
+        "T02"
+      ],
+      "optional_techniques": [
+        "C06",
+        "V10",
+        "V08",
+        "A04",
+        "A05"
+      ],
+      "structure": [
+        "确认主观点",
+        "组完整可懂的对白",
+        "去重复和明显空转",
+        "必要时补充相关 B-roll",
+        "结尾保留结论或下一步"
+      ],
+      "pacing_defaults": {
+        "unit": "complete_semantic_phrase",
+        "broll_seconds_hint": [
+          1,
+          4
+        ],
+        "note": "自然呼吸和限定语保留；不要一律删除停顿。"
+      },
+      "audio_defaults": {
+        "primary": "源对白",
+        "music": "optional_and_subordinate",
+        "music_below_speech_db_hint": [
+          10,
+          18
+        ],
+        "auto_ducking": false,
+        "loudness_target_lufs": null,
+        "note": "必须确认工具保留原声；只有背景音乐的 XML 不能交作完整口播粗剪。"
+      },
+      "output_defaults": {
+        "duration": "user_spec_else_information_need",
+        "aspect_ratio": "user_spec_else_existing_sequence",
+        "fps": "user_spec_else_existing_sequence_else_source_appropriate",
+        "premiere_handoff": "source_dialogue_required_or_explicit_visual_structure_only",
+        "captions": "only_when_requested_or_needed_and_verified"
+      },
+      "avoid": [
+        "删限定语改变观点",
+        "每句都放大",
+        "无关 B-roll",
+        "把未听校转录直接当字幕"
+      ],
+      "verification": [
+        "只听声音仍懂主线",
+        "口型同步",
+        "删句未改意",
+        "字幕人名/数字/否定词正确",
+        "音乐不压对白"
+      ]
+    },
+    {
+      "id": "tutorial",
+      "name": "教程 / 操作演示",
+      "query_tags": [
+        "教程",
+        "教学",
+        "操作",
+        "演示",
+        "tutorial",
+        "how to",
+        "how-to",
+        "录屏",
+        "步骤",
+        "课程"
+      ],
+      "priority_signal": "观众要复现实际操作、学会步骤或理解一个过程。",
+      "core_techniques": [
+        "S01",
+        "S09",
+        "S10",
+        "T04",
+        "V10"
+      ],
+      "optional_techniques": [
+        "T01",
+        "T02",
+        "V04",
+        "R09",
+        "A05"
+      ],
+      "structure": [
+        "目标与前提",
+        "必要步骤",
+        "参数和等待条件",
+        "常见失败点",
+        "实际验证结果"
+      ],
+      "pacing_defaults": {
+        "unit": "operation_step",
+        "callout_seconds_hint": [
+          2,
+          5
+        ],
+        "note": "能复现优先；安全步骤、不可逆操作和参数不能省略。"
+      },
+      "audio_defaults": {
+        "primary": "讲解或真实操作说明",
+        "music": "optional_low_distraction",
+        "auto_ducking": false,
+        "loudness_target_lufs": null
+      },
+      "output_defaults": {
+        "duration": "user_spec_else_step_completeness",
+        "aspect_ratio": "user_spec_else_source_interface_need",
+        "fps": "user_spec_else_existing_sequence_else_source_appropriate",
+        "premiere_handoff": "basic_structure_plus_manual_callouts_and_audio"
+      },
+      "avoid": [
+        "为了短而删关键步骤",
+        "字幕挡住按钮和参数",
+        "时间跳过不说明状态变化",
+        "没有展示验证结果"
+      ],
+      "verification": [
+        "步骤可复现",
+        "参数和操作区域可读",
+        "前提及等待条件正确",
+        "最终结果实际出现",
+        "说明与动作同步"
+      ]
+    },
+    {
+      "id": "product-promo",
+      "name": "产品 / 服务介绍",
+      "query_tags": [
+        "产品",
+        "宣传",
+        "广告",
+        "品牌",
+        "商业片",
+        "promo",
+        "product",
+        "商品",
+        "卖点",
+        "电商",
+        "服务介绍"
+      ],
+      "priority_signal": "主要目标是清楚呈现真实产品价值、功能或品牌体验。",
+      "core_techniques": [
+        "S02",
+        "S05",
+        "C05",
+        "V10",
+        "T03"
+      ],
+      "optional_techniques": [
+        "T06",
+        "C03",
+        "R02",
+        "R09",
+        "V01",
+        "V02",
+        "A07"
+      ],
+      "structure": [
+        "一个问题或真实结果",
+        "产品/服务登场",
+        "可证明的功能证据",
+        "实际使用或比较",
+        "需要时给真实下一步"
+      ],
+      "pacing_defaults": {
+        "unit": "benefit_and_evidence",
+        "shot_seconds_hint": [
+          1.5,
+          4
+        ],
+        "end_card_seconds_hint": [
+          2,
+          5
+        ],
+        "note": "文字和功能细节须看清；时长由用户用途决定。"
+      },
+      "audio_defaults": {
+        "primary": "指定配乐或产品解说",
+        "source_sound": "产品动作声按功能保留",
+        "auto_ducking": false,
+        "loudness_target_lufs": null
+      },
+      "output_defaults": {
+        "duration": "user_spec_else_benefit_count",
+        "aspect_ratio": "user_spec_else_existing_sequence",
+        "fps": "user_spec_else_existing_sequence_else_source_appropriate",
+        "premiere_handoff": "hard_cut_evidence_structure_plus_manual_titles_color",
+        "cta": "only_if_requested_or_clear_promo_intent"
+      },
+      "avoid": [
+        "编造价格/链接/性能",
+        "不公平前后对比",
+        "用特效盖住产品",
+        "一屏多个同等重要卖点"
+      ],
+      "verification": [
+        "产品名称型号准确",
+        "事实有输入依据",
+        "证据镜头可见",
+        "文字可读",
+        "CTA 真实可执行"
+      ]
+    },
+    {
+      "id": "documentary-interview",
+      "name": "纪录 / 访谈",
+      "query_tags": [
+        "纪录",
+        "纪实",
+        "采访",
+        "访谈",
+        "documentary",
+        "interview",
+        "J cut",
+        "L cut",
+        "J-cut",
+        "L-cut",
+        "真实故事"
+      ],
+      "priority_signal": "真实观点、人物与事件的原意和证据关系主导；真实性先于节奏技巧。",
+      "core_techniques": [
+        "S04",
+        "A01",
+        "C06",
+        "V10",
+        "A04"
+      ],
+      "optional_techniques": [
+        "A02",
+        "A03",
+        "A06",
+        "S07",
+        "T01",
+        "T02",
+        "A05"
+      ],
+      "structure": [
+        "事实问题或人物背景",
+        "完整观点",
+        "真实相关证据/B-roll",
+        "必要限定或不同立场",
+        "结果或待解问题"
+      ],
+      "pacing_defaults": {
+        "unit": "complete_thought_with_context",
+        "j_cut_lead_seconds_hint": [
+          0.2,
+          1.5
+        ],
+        "l_cut_tail_seconds_hint": [
+          0.3,
+          2
+        ],
+        "note": "J/L 范围仅试剪起点，基础脚本不实现分离编辑。"
+      },
+      "audio_defaults": {
+        "primary": "源采访/现场声",
+        "room_tone": "same_scene_when_available",
+        "music": "subordinate_optional",
+        "auto_ducking": false,
+        "loudness_target_lufs": null,
+        "note": "保留说话人和原始时间位置；原声音轨需实际实现。"
+      },
+      "output_defaults": {
+        "duration": "user_spec_else_evidence_completeness",
+        "aspect_ratio": "user_spec_else_existing_sequence",
+        "fps": "user_spec_else_existing_sequence_else_source_appropriate",
+        "premiere_handoff": "dialogue_required_or_explicit_visual_structure_only_then_manual_split_edits"
+      },
+      "avoid": [
+        "拼句改变立场",
+        "不同时间反应伪装同期",
+        "无关库存镜头冒充证据",
+        "把声音桥当成真实同期声"
+      ],
+      "verification": [
+        "原意与限定完整",
+        "说话人正确",
+        "时空关系未伪造",
+        "B-roll 相关",
+        "音频接缝试听"
+      ]
+    },
+    {
+      "id": "travel-vlog",
+      "name": "旅行 / 日常记录",
+      "query_tags": [
+        "旅行",
+        "旅游",
+        "日常",
+        "Vlog",
+        "vlog",
+        "travel",
+        "游记",
+        "旅拍",
+        "生活记录"
+      ],
+      "priority_signal": "空间变化、个人体验或日常过程是主线。",
+      "core_techniques": [
+        "C05",
+        "C08",
+        "S09",
+        "R01",
+        "A06"
+      ],
+      "optional_techniques": [
+        "S06",
+        "S10",
+        "R05",
+        "V01",
+        "V03",
+        "V07"
+      ],
+      "structure": [
+        "到达或建立地点",
+        "行动与探索",
+        "具体发现/互动/细节",
+        "个人感受",
+        "自然收束"
+      ],
+      "pacing_defaults": {
+        "unit": "experience_and_location",
+        "shot_seconds_hint": [
+          2,
+          5
+        ],
+        "scene_group_shots_hint": [
+          2,
+          5
+        ],
+        "note": "用户路线与记录重点优先；重要现场声给独立空间。"
+      },
+      "audio_defaults": {
+        "primary": "用户选择的音乐或真实现场声",
+        "source_sound": "保留有体验功能的现场声与对话",
+        "auto_ducking": false,
+        "loudness_target_lufs": null
+      },
+      "output_defaults": {
+        "duration": "user_spec_else_experience_scope",
+        "aspect_ratio": "user_spec_else_existing_sequence",
+        "fps": "user_spec_else_existing_sequence_else_source_appropriate",
+        "premiere_handoff": "basic_hard_cut_structure_plus_manual_environment_sound"
+      },
+      "avoid": [
+        "连续风景没有体验主线",
+        "误标地点日期",
+        "全部现场声被音乐盖住",
+        "为了快切省掉重要互动"
+      ],
+      "verification": [
+        "地点和路线可理解",
+        "日期信息正确",
+        "体验有具体细节",
+        "方向衔接清楚",
+        "声音与画面关系自然"
+      ]
+    },
+    {
+      "id": "event-recap",
+      "name": "活动 / 婚礼 / 会议回顾",
+      "query_tags": [
+        "活动",
+        "婚礼",
+        "会议",
+        "回顾",
+        "event",
+        "wedding",
+        "庆典",
+        "典礼",
+        "赛事",
+        "演出",
+        "毕业"
+      ],
+      "priority_signal": "覆盖真实活动关键环节和参与者；完整记录与精彩回顾要先区分。",
+      "core_techniques": [
+        "S01",
+        "S06",
+        "C05",
+        "R04",
+        "R05"
+      ],
+      "optional_techniques": [
+        "A01",
+        "A05",
+        "A06",
+        "S03",
+        "T03",
+        "T01"
+      ],
+      "structure": [
+        "环境和活动身份",
+        "重要参与者",
+        "必留环节",
+        "真实高潮与反应",
+        "结果和收束"
+      ],
+      "pacing_defaults": {
+        "unit": "required_event_moments",
+        "shot_seconds_hint": [
+          2,
+          5
+        ],
+        "note": "讲话、誓词、仪式按用户范围保留；回顾节奏不能覆盖必留清单。"
+      },
+      "audio_defaults": {
+        "primary": "重要讲话/仪式原声与指定音乐",
+        "source_sound": "现场欢呼和参与者反应按事实保留",
+        "auto_ducking": false,
+        "loudness_target_lufs": null
+      },
+      "output_defaults": {
+        "duration": "user_spec_and_record_vs_recap",
+        "aspect_ratio": "user_spec_else_existing_sequence",
+        "fps": "user_spec_else_existing_sequence_else_source_appropriate",
+        "premiere_handoff": "basic_structure_and_required_moment_list_then_manual_live_audio"
+      },
+      "avoid": [
+        "漏掉指定人员或环节",
+        "不同时间反应伪装同时发生",
+        "把完整记录剪成快回顾",
+        "活动名称日期人名错误"
+      ],
+      "verification": [
+        "必留清单全部覆盖",
+        "人员日期活动身份正确",
+        "重要原声完整",
+        "实际高潮成立",
+        "记录/回顾交付范围吻合"
+      ]
+    },
+    {
+      "id": "social-short",
+      "name": "短社交视频",
+      "query_tags": [
+        "短视频",
+        "社交",
+        "social",
+        "shorts",
+        "reels",
+        "抖音",
+        "快手",
+        "小红书",
+        "TikTok",
+        "竖屏短片",
+        "信息流"
+      ],
+      "priority_signal": "一条信息或一个完整小故事，首屏与目标尺寸阅读重要；平台名字不能覆盖用户规格。",
+      "core_techniques": [
+        "S02",
+        "C01",
+        "S09",
+        "T01",
+        "T03"
+      ],
+      "optional_techniques": [
+        "A07",
+        "D03",
+        "D02",
+        "V04",
+        "T06"
+      ],
+      "structure": [
+        "主题或结果首屏",
+        "最少必要背景",
+        "一个行动/观点/证据",
+        "结果或收束"
+      ],
+      "pacing_defaults": {
+        "unit": "single_information_or_small_story",
+        "opening_seconds_hint": [
+          1,
+          3
+        ],
+        "shot_seconds_hint": [
+          1.5,
+          4
+        ],
+        "note": "可读性优先，不规定每秒切；字和动作需要时延长。"
+      },
+      "audio_defaults": {
+        "primary": "当前内容需要的对白/音乐",
+        "silent_viewing": "必要信息有经核验的视觉表达",
+        "auto_ducking": false,
+        "loudness_target_lufs": null
+      },
+      "output_defaults": {
+        "duration": "user_spec_else_complete_small_story",
+        "aspect_ratio": "user_spec_else_existing_sequence_or_actual_platform_need",
+        "fps": "user_spec_else_existing_sequence_else_source_appropriate",
+        "premiere_handoff": "basic_structure_plus_manual_captions_reframe",
+        "platform_overlay_check": "actual_target_preview"
+      },
+      "avoid": [
+        "见短视频就固定 9:16",
+        "无意义持续快切",
+        "文字被 UI 遮挡",
+        "给无推广意图内容硬加 CTA"
+      ],
+      "verification": [
+        "首屏可理解",
+        "主信息单一",
+        "必要内容无声可懂",
+        "目标尺寸文字可读无遮挡",
+        "比例时长音频实测"
+      ]
+    },
+    {
+      "id": "long-to-short",
+      "name": "长片拆条 / 再利用",
+      "query_tags": [
+        "拆条",
+        "长转短",
+        "长片转短",
+        "再利用",
+        "摘录",
+        "repurpose",
+        "长视频",
+        "切成短片",
+        "提取片段",
+        "短片拆分"
+      ],
+      "priority_signal": "从现有长片、采访或课程中提取独立成立的片段。",
+      "core_techniques": [
+        "D04",
+        "S04",
+        "S02",
+        "S09",
+        "D02"
+      ],
+      "optional_techniques": [
+        "V04",
+        "T01",
+        "T02",
+        "T03",
+        "T06"
+      ],
+      "structure": [
+        "读听原片前后上下文",
+        "选完整观点或事件",
+        "补最少背景",
+        "保留证据和限定",
+        "改构图与标题并收束"
+      ],
+      "pacing_defaults": {
+        "unit": "complete_independent_excerpt",
+        "opening_seconds_hint": [
+          1,
+          3
+        ],
+        "note": "用户长度容不下原意时换段或明确为预告；不截断限定条件。"
+      },
+      "audio_defaults": {
+        "primary": "原片相应音轨",
+        "music": "respect_existing_or_user_choice",
+        "auto_ducking": false,
+        "loudness_target_lufs": null
+      },
+      "output_defaults": {
+        "duration": "user_spec_else_complete_excerpt",
+        "aspect_ratio": "user_spec_else_existing_sequence_or_target_need",
+        "fps": "user_spec_else_existing_sequence_else_source_appropriate",
+        "premiere_handoff": "source_referenced_excerpt_plus_manual_reframe_captions",
+        "source_time_reference": true
+      },
+      "avoid": [
+        "只截惊人一句改变原意",
+        "机械中心裁切",
+        "新标题夸大内容",
+        "丢失原片引用位置"
+      ],
+      "verification": [
+        "独立可懂且原意完整",
+        "限定语和证据保留",
+        "原片位置可追溯",
+        "新标题准确",
+        "构图和字幕适合目标尺寸"
+      ]
+    },
+    {
+      "id": "general-story",
+      "name": "通用叙事 / 待细分",
+      "query_tags": [
+        "通用",
+        "剪辑",
+        "视频",
+        "video",
+        "edit",
+        "素材整理",
+        "粗剪",
+        "剪片",
+        "Premiere",
+        "PR"
+      ],
+      "priority_signal": "信息不足或多类型混合时的最小主线起点；更具体配方命中时应让具体目标优先。",
+      "core_techniques": [
+        "S01",
+        "C01",
+        "C05",
+        "R05",
+        "V10"
+      ],
+      "optional_techniques": [
+        "S02",
+        "S06",
+        "S09",
+        "R01",
+        "T01"
+      ],
+      "structure": [
+        "明确当前目标和源身份",
+        "标记建立/行动/细节/反应/结果",
+        "搭清楚最小主线",
+        "检查缺失素材",
+        "按需要细分配方并预览"
+      ],
+      "pacing_defaults": {
+        "unit": "information_or_action",
+        "shot_seconds_hint": [
+          2,
+          5
+        ],
+        "note": "范围只为试剪起点；素材不足要说明实际可交付范围。"
+      },
+      "audio_defaults": {
+        "primary": "user_selected_actual_audio",
+        "auto_ducking": false,
+        "loudness_target_lufs": null,
+        "note": "不添加虚构原声或假定已有音乐。"
+      },
+      "output_defaults": {
+        "duration": "user_spec_else_available_complete_scope",
+        "aspect_ratio": "user_spec_else_existing_sequence",
+        "fps": "user_spec_else_existing_sequence_else_source_appropriate",
+        "premiere_handoff": "verified_supported_xmeml_with_limitations"
+      },
+      "avoid": [
+        "缺素材仍假装完整故事",
+        "强制所有技巧",
+        "默认历史媒体或参数",
+        "将结构验证等同视觉验收"
+      ],
+      "verification": [
+        "镜头顺序有可说明功能",
+        "必要信息与实际素材齐全",
+        "无无来源叙事",
+        "媒体身份正确",
+        "实际结果符合用户范围"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "shadow"
+  short_description: "宣传片、活动快剪、网络课程等20领域，包图网素材到Premiere成片交付"
+  default_prompt: "使用 $shadow，按我的要求完成素材查找整理、剪辑时间线、自然转场、音频与文稿生成字幕、标题和成片，并交付 Premiere 工程。"
+policy:
+  allow_implicit_invocation: true

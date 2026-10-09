@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "project_name": "替换为本次项目名称",
+  "purpose": "本次成片的具体用途与主导叙事目标",
+  "brief": {"subject_identity": null, "audience": null, "required_moments": [], "reference_files": [], "reference_urls": [], "output_specs": {}},
+  "directories": {
+    "downloads": "staging/downloads",
+    "extracted_stock_packs": "staging/extracted",
+    "video": "media/video",
+    "audio": "media/audio",
+    "image": "media/image",
+    "rights_attachments": "rights",
+    "contact_sheets": "previews/contact-sheets",
+    "manifests": "manifests",
+    "notes": "notes",
+    "editable_projects": "projects",
+    "exports": "exports"
+  },
+  "asset_record_fields": ["id","sha256","stored_path","original_name","mode","category","media_role","status","technical_metadata","semantic_summary","review_evidence","tags","provenance"],
+  "source_statuses": {
+    "candidate": "仅有页面/检索记录，尚未落地文件",
+    "downloaded": "实际完成文件已导入或引用；不等于已看内容",
+    "verified": "实际文件存在，并有观看/试听/明确用户核验记录",
+    "selected": "已作选镜决定；是否已看内容仍按 review_evidence 字段独立判断"
+  },
+  "media_roles": {"source":"可用原素材","preview":"预览、样机或水印示例，禁止默认替代原片","reference":"参考图/参考文件，需要明确用途"},
+  "provenance_fields": ["origin","page_url","item_id","title","query","license_note","downloaded_at","entitlement_note","local_source_path","archive_member"],
+  "review_evidence_values": ["metadata-only","user-description","viewed","listened","user-verified"],
+  "selected_use_fields": ["asset_id","in","out","timeline_in","track","sort_order","purpose","media_path","review_evidence"],
+  "notes": ["这是项目说明模板；SQLite 库由 assets.py init 创建。","不保存登录密码、cookie、token 或浏览器会话。","会员/下载/页面授权信息记录实际可观察内容；不新增版权确认流程。","项目参数与素材身份来自本次请求，不沿用历史歌曲或比例。"]
+}

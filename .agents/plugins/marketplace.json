@@ -1,0 +1,10 @@
+{
+  "name": "shadow",
+  "interface": {"displayName": "shadow 剪辑工作流"},
+  "plugins": [{
+    "name": "shadow",
+    "source": {"source": "local", "path": "./shadow"},
+    "policy": {"installation": "AVAILABLE", "authentication": "ON_USE"},
+    "category": "Productivity"
+  }]
+}
