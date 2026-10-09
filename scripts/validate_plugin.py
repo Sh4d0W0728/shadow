@@ -20,11 +20,11 @@ PLUGIN_FILES = frozenset({
     "shadow/assets/shadow.svg", PLUGIN_PREFIX + "SKILL.md",
     PLUGIN_PREFIX + "agents/openai.yaml",
     *[PLUGIN_PREFIX + "scripts/" + n + ".py" for n in
-      ("assets", "pipeline", "profiles", "recipes", "setup_asr", "shadow", "subtitles")],
+      ("assets", "organize", "organize_media", "pipeline", "profiles", "recipes", "setup_asr", "shadow", "subtitles")],
     *[PLUGIN_PREFIX + "assets/" + n + ".json" for n in
-      ("domain-profiles", "project-template", "recipes")],
+      ("domain-profiles", "organize-categories", "project-template", "recipes")],
     *[PLUGIN_PREFIX + "references/" + n + ".md" for n in
-      ("asset-library", "baotu", "commands", "domains", "pipeline", "premiere",
+      ("asset-library", "baotu", "commands", "domains", "organize", "pipeline", "premiere",
        "setup", "subtitles", "techniques", "timeline-format", "timeline-v2", "workflows")],
 })
 RELEASE_ROOT_FILES = frozenset({
@@ -37,7 +37,8 @@ RELEASE_ROOT_FILES = frozenset({
 })
 MAINTENANCE_FILES = frozenset({
     ".gitignore", ".gitattributes", "scripts/build_release.py", "scripts/validate_plugin.py",
-    "tests/test_release.py", "tests/test_profiles.py", ".github/workflows/validate.yml", ".github/workflows/release.yml",
+    "tests/test_release.py", "tests/test_profiles.py", "tests/test_organize.py", "tests/test_organize_media.py",
+    ".github/workflows/validate.yml", ".github/workflows/release.yml",
 })
 MEDIA_EXTENSIONS = frozenset({
     ".mp4", ".mov", ".mkv", ".avi", ".webm", ".m4v", ".mp3", ".wav", ".flac",

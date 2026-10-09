@@ -106,7 +106,7 @@ class ReleaseTests(unittest.TestCase):
         report = vp.validate(self.root, "v2.1.0")
         self.assertEqual("2.1.0", report["version"])
         self.assertEqual(1, report["domain_profiles"])
-        self.assertEqual(7, report["python_files_compiled"])
+        self.assertEqual(sum(name.endswith('.py') for name in vp.PLUGIN_FILES), report["python_files_compiled"])
 
     def test_deterministic_package_contents_and_alias(self):
         first = build_release.build(self.root, self.base / "first", tag="v2.1.0")

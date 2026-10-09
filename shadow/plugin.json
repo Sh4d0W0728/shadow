@@ -1,7 +1,7 @@
 {
   "name": "shadow",
-  "version": "2.1.0",
-  "description": "20个剪辑领域覆盖宣传片、活动快剪、网络课程等，结合会员浏览器素材搜索、归档分析、剪辑配方、Premiere时间线、转场、音频与文稿校正SRT、标题及成片核验。",
+  "version": "2.2.0",
+  "description": "实际查看原始视频、按内容分类编号并整理到指定文件夹；20个剪辑领域结合包图网补材、Premiere时间线、转场、音频与文稿校正SRT、标题及成片核验。",
   "author": {
     "name": "shadow contributors"
   },
@@ -19,8 +19,8 @@
       "skills": "./skills/",
       "interface": {
         "displayName": "shadow",
-        "shortDescription": "包图网素材到 Premiere 成片的完整剪辑流程",
-        "longDescription": "20个剪辑领域覆盖宣传片、活动快剪、网络课程等，结合会员浏览器素材搜索、归档分析、剪辑配方、Premiere时间线、转场、音频与文稿校正SRT、标题及成片核验。",
+        "shortDescription": "原片识别分类、编号归档，到 Premiere 成片交付",
+        "longDescription": "实际查看原始视频、按内容分类编号并整理到指定文件夹；20个剪辑领域结合包图网补材、Premiere时间线、转场、音频与文稿校正SRT、标题及成片核验。",
         "developerName": "shadow contributors",
         "category": "Productivity",
         "capabilities": [

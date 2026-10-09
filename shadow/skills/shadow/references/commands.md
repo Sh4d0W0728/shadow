@@ -14,6 +14,8 @@ python -X utf8 "<技能目录>/scripts/recipes.py" show talking-head
 
 ## 素材检查
 
+需要把原片按实际画面分类、编号并复制到指定目录时，用 `organize.py` 的 `prepare`、`review-template`、`plan`、`apply`、`verify`；完整命令及实际查看画面的方法见 [分类整理](organize.md)。下面的 `inspect` 只检查技术信息，不完成语义分类或物理归档。
+
 ```powershell
 python -X utf8 "<技能目录>/scripts/shadow.py" doctor
 python -X utf8 "<技能目录>/scripts/shadow.py" inspect "<素材目录>" --recursive --sha256 --output "<任务目录>/media.json"

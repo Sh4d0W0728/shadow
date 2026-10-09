@@ -1,6 +1,6 @@
 # 维护与发布 shadow
 
-仓库中的 `shadow/` 是可安装插件；用户的媒体、素材库、授权附件、模型、缓存、字幕和 Premiere 工程属于用户项目，不应放进插件源码。维护脚本只使用 Python 标准库，运行源码验证和发布测试无需安装 FFmpeg、faster-whisper 或 Premiere。
+仓库中的 `shadow/` 是可安装插件；用户的媒体、素材库、授权附件、模型、缓存、字幕和 Premiere 工程属于用户项目，不应放进插件源码。维护脚本只使用 Python 标准库。源码与归档测试无需额外依赖；素材测试在找到 FFmpeg/ffprobe 时执行真实媒体案例，否则明确跳过。faster-whisper 和 Premiere 仍按任务单独验收。
 
 ## 本地验证
 
@@ -35,7 +35,7 @@ python -X utf8 scripts/build_release.py
 ## 发布一个版本
 
 1. 同步修改 `shadow/plugin.json` 与 `shadow/.codex-plugin/plugin.json` 的 `version`、`shadow/skills/shadow/scripts/shadow.py` 和 `subtitles.py` 的 `VERSION`，更新 `CHANGELOG.md` 与 README 当前版本。版本格式为 `major.minor.patch`，发布标签必须为对应的 `v<version>`。
-2. 运行上述验证、测试和构建，再检查包内文件及校验值。也可用 `python -X utf8 scripts/validate_plugin.py --tag v2.1.0` 在本地检查拟用标签。
+2. 运行上述验证、测试和构建，再检查包内文件及校验值。也可用 `python -X utf8 scripts/validate_plugin.py --tag v2.2.0` 在本地检查拟用标签。
 3. 提交源码并创建指向该提交的 Git 标签。在 GitHub 创建并发布该标签对应的 Release，按真实改动填写发布说明。
 4. `release.yml` 接收已有 Release 的 `published` 事件，检出该标签，重新匹配两个 manifest、运行测试和构建，然后将两个 ZIP 与 `SHA256SUMS` 上传到这次 Release。
 5. 确认 Release 中三个附件可下载，校验哈希，并以独立安装目录检查离线安装及联网更新路径。
@@ -45,3 +45,7 @@ python -X utf8 scripts/build_release.py
 Actions 使用 [actions/checkout v4](https://github.com/actions/checkout/tree/v4) 与 [actions/setup-python v5](https://github.com/actions/setup-python/tree/v5) 的官方主线版本。后续升级 action 时重新核对 runner 与 Node 兼容要求；需要更严格供应链固定时可将经过核对的版本改为完整提交 SHA。
 
 发布器不带 `--clobber`。如果同名附件已存在，上传会失败而保留旧资产。需要重跑时先核对现有附件与本地生成物是否相同；如必须替换，由维护者明确删除相应附件后重跑该工作流。不要自动覆盖已经分发给用户的版本；内容有变化时应发布新版本。
+
+## 素材分类整理模块
+
+`organize_media.py` 负责真实扫描与可核验抽帧，`organize.py` 负责 review 约束、分类计划与复制；语义分类来自 Codex 实际查看画面。修改任一阶段时同时验证 stale inventory/review、坏视频、重复来源、路径边界、同名冲突与重跑，以及源文件哈希不变。运行 `tests/test_organize_media.py` 的真实媒体用例需 FFmpeg/ffprobe；缺少依赖时跳过不等于媒体功能通过。不得把测试用的图像、视频、个人路径或视觉审阅结果提交到源码库。分类参考文档是使用入口，CLI 有变化必须同步。

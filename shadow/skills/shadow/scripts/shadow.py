@@ -24,7 +24,7 @@ from fractions import Fraction
 from urllib.parse import quote
 import xml.etree.ElementTree as ET
 
-VERSION = "2.1.0"
+VERSION = "2.2.0"
 MEDIA_EXTENSIONS = {
     ".mp4", ".mov", ".mkv", ".avi", ".m4v", ".webm", ".wmv", ".mts",
     ".m2ts", ".mpg", ".mpeg", ".flv", ".mxf", ".wav", ".mp3", ".m4a",
