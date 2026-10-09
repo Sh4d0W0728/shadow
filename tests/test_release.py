@@ -30,6 +30,8 @@ def make_fixture(root):
             write_json(path, {})
         elif path.suffix == ".py":
             path.write_text('"""Source fixture."""\n', encoding="utf-8")
+        elif path.suffix == ".svg":
+            path.write_text('<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"/>\n', encoding="utf-8")
         else:
             path.write_text("Fixture\n", encoding="utf-8")
     interface = {"displayName": "shadow", "composerIcon": "./assets/shadow.svg",
@@ -119,6 +121,7 @@ class ReleaseTests(unittest.TestCase):
             self.assertIn("shadow/.codex-plugin/plugin.json", packed.namelist())
             self.assertIn("安装shadow.cmd", packed.namelist())
             self.assertIn("docs/maintaining.md", packed.namelist())
+            self.assertIn("docs/assets/shadow-hero.svg", packed.namelist())
             self.assertTrue(all(info.date_time == (1980, 1, 1, 0, 0, 0) for info in packed.infolist()))
             self.assertTrue(all(not info.filename.startswith("/") and ".." not in Path(info.filename).parts for info in packed.infolist()))
         checksums = Path(first["artifacts"][2]).read_text(encoding="ascii").splitlines()
@@ -152,6 +155,33 @@ class ReleaseTests(unittest.TestCase):
     def test_document_reference_cannot_escape(self):
         (self.root / "README.md").write_text("[外部](../secret.txt)\n", encoding="utf-8")
         self.assert_invalid("escapes repository")
+
+    def test_html_images_and_links_must_exist(self):
+        readme = self.root / "README.md"
+        readme.write_text('<a href="docs/maintaining.md?view=1&amp;language=zh#local">'
+                          '<img src="docs/assets/shadow-hero.svg" alt="shadow" /></a>\n', encoding="utf-8")
+        self.assertTrue(vp.validate(self.root)["ok"])
+        for html in ('<img src="docs/assets/missing.svg" alt="missing">',
+                     '<a href="docs/missing.md">Missing guide</a>'):
+            with self.subTest(html=html):
+                readme.write_text(html, encoding="utf-8")
+                self.assert_invalid("missing document reference")
+
+    def test_html_references_cannot_escape_repository(self):
+        for html in ('<img src="%2e%2e/secret.svg">',
+                     '<a href="..&#47;secret.md">Outside</a>'):
+            with self.subTest(html=html):
+                (self.root / "README.md").write_text(html, encoding="utf-8")
+                self.assert_invalid("escapes repository")
+
+    def test_picture_source_must_exist_even_with_valid_fallback(self):
+        readme = self.root / "README.md"
+        picture = ('<picture><source media="(max-width: 600px)" srcset="{}">'
+                   '<img src="docs/assets/shadow-hero.svg" alt="shadow"></picture>\n')
+        readme.write_text(picture.format("docs/assets/shadow-hero-mobile.svg"), encoding="utf-8")
+        self.assertTrue(vp.validate(self.root)["ok"])
+        readme.write_text(picture.format("docs/assets/missing-mobile.svg"), encoding="utf-8")
+        self.assert_invalid("missing document reference")
 
     def test_unknown_recipe_technique(self):
         self.edit_json(vp.PLUGIN_PREFIX + "assets/recipes.json", lambda data: data["recipes"][0]["core_techniques"].append("S99"))

@@ -1,79 +1,151 @@
-# shadow
+<p align="center">
+  <picture>
+    <source media="(max-width: 600px)" srcset="docs/assets/shadow-hero-mobile.svg">
+    <img src="docs/assets/shadow-hero.svg" width="100%" alt="shadow — 让素材，成为故事。面向 Codex 与 Premiere Pro 的影视剪辑工作流；20个领域、12套配方、56张技巧卡。">
+  </picture>
+</p>
 
-面向 **Codex + Premiere Pro** 的影视剪辑插件。将常用方法做成可复用的领域流程、技巧库和本地工具：从素材整理、包图网补素材、叙事选片到时间线、字幕、标题与交付验证。
+<p align="center"><strong>把常用剪辑经验，变成随时可调用的工作流。</strong><br>素材整理 · 包图网补材 · 时间线 · 字幕与标题 · Premiere 交付</p>
 
-**当前版本：2.1.0。** 20 个细分领域、12 套基础配方、56 张技巧卡。领域规则按需要加载，减少每次从头规划；具体镜头、节奏和情绪仍结合实际素材判断。
+<p align="center">
+  <a href="https://github.com/Sh4d0W0728/shadow/releases/latest/download/shadow.zip"><img src="docs/assets/download.svg" width="180" height="50" alt="下载最新版 shadow.zip"></a>
+  <a href="#快速开始"><img src="docs/assets/quickstart.svg" width="180" height="50" alt="查看安装与更新步骤"></a>
+  <a href="https://github.com/Sh4d0W0728/shadow/releases"><img src="docs/assets/release-notes.svg" width="180" height="50" alt="查看版本记录"></a>
+</p>
 
-[下载最新安装包](https://github.com/Sh4d0W0728/shadow/releases/latest/download/shadow.zip) · [版本与更新记录](https://github.com/Sh4d0W0728/shadow/releases) · [问题反馈](https://github.com/Sh4d0W0728/shadow/issues)
+<p align="center"><sub>v2.1.0 · Codex 插件 · Premiere Pro · Windows 优先 · MIT</sub></p>
 
-## 安装与更新
+---
 
-需要支持 `codex plugin` 的 Codex，以及 Git。Windows 下载上面的 ZIP，完整解压后双击 **安装shadow.cmd**。以后双击 **更新shadow.cmd** 即可拉取仓库 main 分支的版本。脚本只在运行时检查更新，不常驻、不后台轮询。
+## 留更多时间，给故事本身
 
-也可以在终端执行：
+整理文件、找补充镜头、对齐字幕、准备交接——这些重复步骤都有章可循。shadow 把它们整理成领域流程与本地工具，让 Codex 依据你的素材、参考片和要求推进剪辑。具体镜头、节奏和情绪，仍从真实画面与声音出发。
+
+<picture>
+  <source media="(max-width: 600px)" srcset="docs/assets/shadow-workflow-mobile.svg">
+  <img src="docs/assets/shadow-workflow.svg" width="100%" alt="五个阶段：素材整理 → 搜索补材 → 创建剪辑 → 字幕标题 → Premiere交付。">
+</picture>
+
+| 你交给 shadow 的工作 | 得到什么 |
+| :--- | :--- |
+| **整理一堆素材** | 可追溯素材清单、哈希去重、接触表、内容摘要与候选入出点 |
+| **补齐缺少的镜头** | 按主体、动作、景别与色调搜索包图网，会员下载后统一归档 |
+| **把想法落到时间线** | 叙事选片、镜头用途、自然转场、音轨安排及可校验的时间线 |
+| **做好字幕和标题** | 序列音频识别、文稿校对、UTF-8 SRT、片头、章节字与人物条 |
+| **带进 Premiere 继续做** | XML、独立 SRT、素材引用和成片核验；具备编辑器控制时保存原生工程 |
+
+## 同样是剪辑，每种片子都有自己的逻辑
+
+**20 个细分领域，按成片目的选择。** 用户给定的规格、文稿和参考片优先于模板；混合用途可以共用素材库，分别交付。
+
+| 领域 | 工作流与判断重点 |
+| :--- | :--- |
+| **宣传推广 · 5** | 品牌形象 / 企业能力 / 产品展示 / 文旅推广 / 服务与课程招生。把价值主张与真实证据对应起来。 |
+| **活动与会议 · 3** | 当天快剪 / 活动回顾 / 完整会议演讲。分别优先截止时间、流程覆盖和讲话完整性。 |
+| **网络教学 · 3** | 系统课程 / 单知识点微课 / 屏幕操作教程。保留知识递进、关键步骤和可复现结果。 |
+| **采访与纪实 · 2** | 人物采访 / 观察式纪录。从观点、行动与现场关系组织内容。 |
+| **音乐与影视 · 3** | 歌词叙事 MV / 节奏动作混剪 / 影视人物混剪。由情绪、节拍或人物关系推动选镜。 |
+| **生活与社交 · 4** | 婚礼故事 / 知识资讯 / 销售转化 / 个人旅行。围绕人物、信息、行动目标与真实体验展开。 |
+
+每个领域都配有必要输入、结构起点、转场动机、字幕与标题策略、交付物和质量关卡。[浏览领域库 →](shadow/skills/shadow/references/domains.md)
+
+## 快速开始
+
+**Windows：下载、解压、双击。**
+
+1. [下载 shadow.zip](https://github.com/Sh4d0W0728/shadow/releases/latest/download/shadow.zip)，完整解压。
+2. 双击 **安装shadow.cmd**。
+3. 在 Codex 新开对话，用 **`$shadow`** 开始剪辑。
+
+本机需要支持 `codex plugin` 的 Codex 和 Git。实际剪辑还需要 Python 3.10+、FFmpeg/ffprobe；ASR、字体与 Premiere 按任务准备，skill 会先检查环境。[查看运行环境 →](shadow/skills/shadow/references/setup.md)
+
+<details>
+<summary><strong>用终端安装</strong></summary>
 
 ```powershell
 codex plugin marketplace add https://github.com/Sh4d0W0728/shadow.git --ref main
 codex plugin add shadow@shadow
 ```
 
-以后更新：
+安装后新开对话即可调用。插件安装机制见 [OpenAI 官方文档](https://developers.openai.com/plugins/build/plugins)。安装包不含 Codex 本体。
+
+</details>
+
+<details>
+<summary><strong>更新到仓库最新版本</strong></summary>
+
+双击 **更新shadow.cmd**，或执行：
 
 ```powershell
 codex plugin marketplace upgrade shadow
 codex plugin add shadow@shadow
 ```
 
-安装后新开一个 Codex 对话，用 `$shadow` 调用。Codex CLI 的插件安装方式见 [OpenAI 官方文档](https://developers.openai.com/plugins/build/plugins)。这是可以从 GitHub 安装的自定义插件市场；安装包不含 Codex 本体。
+默认跟随本仓库 `main` 分支。脚本只在运行时检查更新；Release 页面保留已发布的版本包和 SHA-256 校验文件。
 
-Windows 可先检查环境：`powershell -NoProfile -ExecutionPolicy Bypass -File .\install-shadow.ps1 -CheckOnly`（仅用于本次进程，不改变系统策略）。找不到 CLI 时用 `-CodexPath "完整的codex.exe路径"`。遇到来源冲突，先在 Codex 中核对已有的 `shadow` 市场，不要覆盖一个来源不明的同名插件。旧版 `shadow@shadow-local` 与本版可以共存；确认新版本可用后，在插件页面停用旧版，避免两个同名 skill 同时生效。
+</details>
 
-离线机器可运行 `powershell -NoProfile -ExecutionPolicy Bypass -File .\install-shadow.ps1 -Local`，使用解压目录安装。该模式需要保留目录，不提供 GitHub 更新；`更新shadow.cmd` 会明确拒绝替换同名的本地来源。选择联网安装时需要先通过 Codex 移除该本地市场配置，再运行默认安装脚本。素材和项目应一直放在插件目录之外。
+<details>
+<summary><strong>环境检查、离线安装与旧版迁移</strong></summary>
 
-## 按成片目的选流程
+Windows 环境检查：
 
-| 领域 | 细分工作流 | 重点区别 |
-| --- | --- | --- |
-| 宣传片 | 品牌形象、企业介绍、产品演示、文旅目的地、服务与机构 | 品牌情绪、事实证据、功能因果、目的地体验各有组织方法 |
-| 活动与会议 | 当天快剪、活动回顾、完整会议演讲 | 当晚交付优先关键瞬间；回顾补足过程；完整演讲保留语意与结构 |
-| 网络教学 | 系统课程、微课、屏幕操作教程 | 章节递进、单一知识点、可复现操作分别设计 |
-| 人物与纪实 | 人物采访、观察式纪录 | 采访以观点组织，观察式以行动和现场关系组织 |
-| 音乐与混剪 | 歌词叙事 MV、节奏动作混剪、人物影视混剪 | 歌词情绪、音乐节拍、人物关系分别驱动镜头选择 |
-| 生活与社交 | 婚礼故事、知识资讯、销售转化、个人旅行 | 人物关系、信息准确、利益点与行动、旅途体验分别处理 |
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\install-shadow.ps1 -CheckOnly
+```
 
-每个领域都包含必要输入、素材分类、结构起点、节奏与转场动机、音画/字幕/标题策略、交付物和质量关卡。用户给定的时长、画幅、帧率、参考片和文稿优先于模板。课程招生广告按宣传目的处理，不会仅因“课程”一词套用教学流程。
+这里的 Bypass 只用于本次进程，不改变系统策略。找不到 CLI 时增加 `-CodexPath "完整的codex.exe路径"`。
 
-## 直接这样调用
+离线安装：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\install-shadow.ps1 -Local
+```
+
+离线模式需要保留解压目录，不提供 GitHub 更新。同名本地来源会让联网安装/更新明确停止；切换前先通过 Codex 移除该本地市场配置。
+
+旧 `shadow@shadow-local` 与 GitHub 版可以共存。确认新版可用后，在插件页面停用旧版，避免两个同名 skill 同时生效。素材和项目始终放在插件目录之外。
+
+</details>
+
+## 一句话，开始下一条片子
+
+**企业宣传片**
 
 ```text
 $shadow 用这些素材剪一条企业宣传片，面向客户，90秒，16:9，25fps。
-先整理真实业务镜头，再列包图网需要补的氛围素材。交付PR工程、成片和SRT。
+先整理真实业务镜头，再列包图网需要补的氛围素材。
+交付 Premiere 工程、成片和 SRT。
 ```
+
+**活动当天快剪**
 
 ```text
 $shadow 今天活动结束后要发一条45秒竖屏快剪。
-保留开场、核心发言一句、观众反应和合影；先给出缺素材清单，再开始剪。
+保留开场、核心发言一句、观众反应和合影。
+先检查缺少的素材，再开始剪。
 ```
+
+**系统网络课程**
 
 ```text
 $shadow 把这套录屏和讲稿整理成网络课程。
-按知识点分章，保留操作因果，结合音频识别和讲稿校正文稿，输出分课视频、SRT和PR交接文件。
+按知识点分章，保留操作因果，结合音频识别与讲稿校正字幕。
+输出分课视频、SRT 和 Premiere 交接文件。
 ```
 
-## 实际能力与运行条件
+## 交付清楚，继续创作也顺手
 
-- **素材管理：** 本地 SQLite 清单、SHA-256 去重、来源记录、媒体信息、接触表和候选入出点。内容总结需要实际看画面、听音频。
-- **包图网：** 通过 Codex 当前可用的浏览器能力操作会员页面。登录时由用户完成验证；正常下载后归档原文件、页面来源与授权附件。没有私有 API 接口，也不保存密码、Cookie 或令牌。会员素材不随插件分发。
-- **时间线与成片：** Python + FFmpeg 创建、校验和渲染时间线，支持基础转场、音轨、字幕与标题合成，并导出 Premiere 可导入 XML。
-- **字幕：** 本地 faster-whisper 识别序列音频，结合用户文稿校对，输出 UTF-8 SRT 和校正报告。模型首次需下载；也可使用本地模型目录。长片速度取决于硬件和模型。
-- **标题：** 可生成片头、章节字和人物条。脚本交接的标题是可重新生成的透明图层；SRT 独立交付。在 PR 内制作原生可编辑文字需实际编辑器操作。
-- **原生 PR：** `.prproj` 需要在 Premiere 中导入、保存和重开。能否自动操作取决于当前 Codex 的桌面控制能力与本机 Premiere；仅生成 XML 时会明确标注交付类型。复杂变速、稳定、精细调色与高级特效需要 PR 内处理。
+**包图网**通过 Codex 当前可用的浏览器能力操作，登录验证由用户完成；下载后记录原文件、来源和授权附件。插件不保存密码、Cookie 或令牌，会员素材不随仓库分发。
 
-核心脚本需要 **Python 3.10+、FFmpeg/ffprobe**。ASR 依赖按需安装，中文标题需要合适字体；Windows 是主要验证平台。先由 skill 执行 doctor，再依照 [运行环境说明](shadow/skills/shadow/references/setup.md) 配置缺项。浏览器和桌面控制由 Codex 环境提供，插件本身不会开启权限或安装剪辑软件。
+**字幕识别**使用本地 faster-whisper，以剪辑后序列音频为时间依据，再结合文稿校对。首次准备依赖或模型需要联网，也可以指定本地模型；人名、数字、歌词和重叠说话需要复核。
 
-## 开发和持续维护
+**Premiere 交接**包含 XML 和独立 SRT。原生 `.prproj` 要在 Premiere 中实际导入、保存与重开；能否自动操作取决于本机软件和 Codex 的桌面控制能力。脚本标题是可重新生成的透明图层，PR 原生可编辑文字、复杂变速、稳定和精细调色在编辑器中处理。
 
-领域库入口：[domains.md](shadow/skills/shadow/references/domains.md)。完整 skill：[SKILL.md](shadow/skills/shadow/SKILL.md)。基础配方与技巧：[工作流](shadow/skills/shadow/references/workflows.md)、[技巧卡](shadow/skills/shadow/references/techniques.md)。
+<details>
+<summary><strong>开发、验证与持续维护</strong></summary>
+
+从 GitHub 克隆源码后，在仓库根目录运行：
 
 ```powershell
 python -X utf8 scripts/validate_plugin.py
@@ -81,6 +153,14 @@ python -X utf8 -m unittest discover -s tests -v
 python -X utf8 scripts/build_release.py --tag v2.1.0
 ```
 
-以上开发命令在克隆的源码仓库内执行；安装 ZIP 仅包含使用所需文件。提交/PR 会运行校验；发布 GitHub Release 后，工作流会验证版本、生成版本 ZIP、固定名 `shadow.zip` 和 SHA-256 校验文件，并附到该 Release。后续新增领域只需扩充领域文档和索引，并通过校验。完整步骤见 [维护指南](docs/maintaining.md)。
+提交和 PR 会运行 Windows / Ubuntu 校验。发布 Release 后，工作流核对版本并生成两个 ZIP 与 SHA-256 清单。安装 ZIP 只包含使用所需文件，开发脚本和测试在源码仓库中。结构检查通过不代替实际媒体、声音或 Premiere 验收。
 
-仓库只收录插件代码与文档，不包含会员素材、账号会话、个人工程、ASR 模型或缓存。代码采用 [MIT License](LICENSE)；外部素材的使用范围以取得素材时的授权为准。
+[维护指南](docs/maintaining.md) · [完整 Skill](shadow/skills/shadow/SKILL.md) · [基础配方](shadow/skills/shadow/references/workflows.md) · [技巧卡](shadow/skills/shadow/references/techniques.md)
+
+</details>
+
+---
+
+<p align="center"><strong>shadow</strong> · 让素材，成为故事。<br><sub>Built for Codex × Premiere Pro</sub></p>
+
+<p align="center"><a href="https://github.com/Sh4d0W0728/shadow/issues">反馈问题</a> · <a href="CHANGELOG.md">更新记录</a> · <a href="LICENSE">MIT License</a></p>

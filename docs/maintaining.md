@@ -16,13 +16,15 @@ python -X utf8 scripts/build_release.py
 
 默认拒绝覆盖已有构建结果。确认重建同一版本时用 `python -X utf8 scripts/build_release.py --force`。`--force` 只替换生成的 ZIP 和校验文件；不会改动源码。可用 `--output-dir` 指定仓库外目录；仓库内统一使用 `dist/`，避免把生成物混进插件。`--root` 可验证或构建另一个完整源码目录。
 
-验证器检查两个 manifest 与 `shadow.py VERSION` 的版本一致、marketplace 的 `./shadow` 引用、图标和技能入口、技能元数据、JSON 重复键/无效数字、Python 语法、Markdown 本地文件链接、技巧与配方关系，以及领域目录的 schema、必需字符串和列表、数值优先级、ID、基础配方和参考文档。外部网址只检查格式并列出域名，CI 不联网确认网页仍然可访问。不同领域共享关键词是正常的混合意图，不作为重复错误。
+验证器检查两个 manifest 与 `shadow.py VERSION` 的版本一致、marketplace 的 `./shadow` 引用、图标和技能入口、技能元数据、JSON 重复键/无效数字、Python 语法、Markdown 本地文件链接（含 README 中 HTML 的 `img src`、`a href` 和 `source srcset`）、技巧与配方关系，以及领域目录的 schema、必需字符串和列表、数值优先级、ID、基础配方和参考文档。响应式图片的 `srcset` 每项只使用一个 URL，不使用多密度候选列表。本地图片与链接必须存在，指向文件时还必须在发布包中。外部网址只检查格式并列出域名，CI 不联网确认网页仍然可访问。不同领域共享关键词是正常的混合意图，不作为重复错误。
 
 检查通过说明源码和包结构通过验证。视频编码、声音、识别准确性、中文文字、原生转场和 Premiere 导入需要另外用实际媒体验收；不能把发布 CI 的通过当成这些能力已经在所有系统验证。标题图层目前依赖 Windows 字体绘制，媒体工具与 ASR 后端仍为运行时依赖。
 
 ## 增加或修改内容
 
-发布器使用明确的文件白名单，不会递归打包任意项目文件。插件源码、根目录安装/更新脚本、README、CHANGELOG、LICENSE、marketplace 与本维护文档进入 ZIP；仓库维护脚本、测试和 Actions 工作流保留在 GitHub 源码中。`.git/`、已有 `dist/` 和明确的 Python 缓存不入包，并在构建报告中列出。
+发布器使用明确的文件白名单，不会递归打包任意项目文件。插件源码、根目录安装/更新脚本、README、CHANGELOG、LICENSE、marketplace、本维护文档，以及 `docs/assets/` 中明确登记的七个展示用 SVG 进入 ZIP；仓库维护脚本、测试和 Actions 工作流保留在 GitHub 源码中。展示资源使用静态 SVG，不包含脚本；封面与流程图分别提供桌面版和窄屏版。`.git/`、已有 `dist/` 和明确的 Python 缓存不入包，并在构建报告中列出。
+
+仅更新 GitHub 展示、README 或展示资源时，可以保持插件版本不变并提交到主分支；不要重新发布既有标签或覆盖该 Release 的下载附件。新的展示资源会随下一次正式版本构建入包，既有安装包保留其发布时的内容。
 
 新增脚本、参考文档或资源时，同步更新 `scripts/validate_plugin.py` 中的 `PLUGIN_FILES` 或相关白名单，再增加测试。未知文件或目录会让构建失败并指出具体路径，不能通过把它放进 `__pycache__` 隐藏：缓存目录只允许 `.pyc`。媒体文件、私人账户绝对路径、凭据形态的文本和二进制内容均会在发布前被拒绝。不要把会员下载样片或个人工程提交进仓库。
 

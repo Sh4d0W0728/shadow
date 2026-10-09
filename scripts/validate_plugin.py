@@ -9,6 +9,7 @@ import math
 import re
 import sys
 import xml.etree.ElementTree as ET
+from html.parser import HTMLParser
 from pathlib import Path, PurePosixPath
 from urllib.parse import unquote, urlsplit
 
@@ -30,6 +31,9 @@ RELEASE_ROOT_FILES = frozenset({
     "install-shadow.ps1", "update-shadow.ps1", "安装shadow.cmd", "更新shadow.cmd",
     "README.md", "CHANGELOG.md", "LICENSE", ".agents/plugins/marketplace.json",
     "docs/maintaining.md",
+    *["docs/assets/" + name + ".svg" for name in
+      ("shadow-hero", "shadow-hero-mobile", "shadow-workflow", "shadow-workflow-mobile",
+       "download", "quickstart", "release-notes")],
 })
 MAINTENANCE_FILES = frozenset({
     ".gitignore", ".gitattributes", "scripts/build_release.py", "scripts/validate_plugin.py",
@@ -46,6 +50,21 @@ TOKEN = re.compile(r"\b(?:gh[pousr]_[A-Za-z0-9_]{20,}|github_pat_[A-Za-z0-9_]{20
 
 class ValidationError(ValueError):
     pass
+
+
+class DocumentHTMLLinks(HTMLParser):
+    """Read HTML navigation and images embedded in GitHub Markdown."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.targets = []
+
+    def handle_starttag(self, tag, attrs):
+        # Responsive picture sources use one URL per srcset, without descriptors.
+        attribute = {"a": "href", "img": "src", "source": "srcset"}.get(tag)
+        if attribute:
+            self.targets.extend(value for name, value in attrs
+                                if name == attribute and value is not None)
 
 
 def relative_name(path: Path, root: Path) -> str:
@@ -333,8 +352,11 @@ def document_checks(root: Path, files):
         if path.suffix == ".md":
             # Code fences contain examples, not document navigation.
             prose = re.sub(r"^```.*?^```\s*$", "", text, flags=re.M | re.S)
-            for target in re.findall(r"!?\[[^\]\n]*\]\(([^\s)]+)(?:\s+[^)]*)?\)", prose):
-                target = target.strip("<>")
+            html_links = DocumentHTMLLinks()
+            html_links.feed(prose)
+            targets = re.findall(r"!?\[[^\]\n]*\]\(([^\s)]+)(?:\s+[^)]*)?\)", prose)
+            for target in targets + html_links.targets:
+                target = target.strip().strip("<>")
                 url = urlsplit(target)
                 if url.scheme in ("http", "https"):
                     require(bool(url.netloc) and url.username is None and url.password is None,
