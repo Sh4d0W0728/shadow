@@ -34,6 +34,42 @@ class ProfileTests(unittest.TestCase):
         result = profiles.select('企业宣传片，介绍企业业务、团队和生产流程')
         self.assertEqual(result['candidates'][0]['id'], 'promo-corporate')
 
+    def test_product_launch_scenario_selects_product_purpose(self):
+        query = '45秒产品上市预告，受众第一次认识品牌，情绪起伏，不能只是整齐卡点'
+        result = profiles.select(query)
+        self.assertEqual(result['candidates'][0]['id'], 'promo-product')
+        self.assertFalse(result['ambiguous'])
+        self.assertIsNone(result['fallback_recipe'])
+        self.assertEqual(profiles.select('为新用户制作新品预告')['candidates'][0]['id'], 'promo-product')
+
+    def test_practical_course_scenario_preserves_teaching_purpose(self):
+        query = '8分钟焊接操作课程，所有关键安全步骤和参数必须保留，用户给了60fps慢动作和炫酷预告片参考'
+        result = profiles.select(query)
+        self.assertEqual(result['candidates'][0]['id'], 'education-course')
+        self.assertFalse(result['ambiguous'])
+        self.assertIsNone(result['fallback_recipe'])
+        self.assertEqual(profiles.select('制作焊接实操课程，保留步骤与参数')['candidates'][0]['id'], 'education-course')
+
+    def test_launch_and_practical_course_negation_does_not_add_candidates(self):
+        cases = [
+            ('不要45秒产品上市预告，而是完整会议记录，保留发言和问答', 'promo-product', 'conference-talk'),
+            ('不做新品预告，而是完整会议记录', 'promo-product', 'conference-talk'),
+            ('不是8分钟焊接操作课程，而是课程招生广告，面向潜在学员展示课程价值', 'education-course', 'promo-service'),
+            ('不需要实操课程，而是课程招生广告', 'education-course', 'promo-service'),
+        ]
+        for query, excluded, expected in cases:
+            with self.subTest(query=query):
+                result = profiles.select(query)
+                self.assertEqual(result['candidates'][0]['id'], expected)
+                self.assertNotIn(excluded, [c['id'] for c in result['candidates']])
+
+    def test_practical_course_name_does_not_override_recruitment_ad(self):
+        for query in ['制作焊接操作课程招生广告，面向潜在学员展示课程价值',
+                      '制作焊接实操课程招生宣传，介绍收益和报名方式']:
+            with self.subTest(query=query):
+                result = profiles.select(query)
+                self.assertEqual(result['candidates'][0]['id'], 'promo-service')
+
     def test_no_match_is_explicitly_uncertain(self):
         result = profiles.select('整理一下这些文件')
         self.assertEqual(result['candidates'], [])

@@ -24,8 +24,8 @@ PLUGIN_FILES = frozenset({
     *[PLUGIN_PREFIX + "assets/" + n + ".json" for n in
       ("domain-profiles", "organize-categories", "project-template", "recipes")],
     *[PLUGIN_PREFIX + "references/" + n + ".md" for n in
-      ("asset-library", "baotu", "commands", "domains", "organize", "pipeline", "premiere",
-       "setup", "subtitles", "techniques", "timeline-format", "timeline-v2", "workflows")],
+      ("asset-library", "baotu", "commands", "domains", "editorial-playbook", "mediastorm", "organize", "pipeline", "premiere", "premiere-craft",
+       "setup", "story-craft", "subtitles", "techniques", "timeline-format", "timeline-v2", "workflows")],
 })
 RELEASE_ROOT_FILES = frozenset({
     "install-shadow.ps1", "update-shadow.ps1", "安装shadow.cmd", "更新shadow.cmd",

@@ -35,7 +35,7 @@ python -X utf8 scripts/build_release.py
 ## 发布一个版本
 
 1. 同步修改 `shadow/plugin.json` 与 `shadow/.codex-plugin/plugin.json` 的 `version`、`shadow/skills/shadow/scripts/shadow.py` 和 `subtitles.py` 的 `VERSION`，更新 `CHANGELOG.md` 与 README 当前版本。版本格式为 `major.minor.patch`，发布标签必须为对应的 `v<version>`。
-2. 运行上述验证、测试和构建，再检查包内文件及校验值。也可用 `python -X utf8 scripts/validate_plugin.py --tag v2.2.0` 在本地检查拟用标签。
+2. 运行上述验证、测试和构建，再检查包内文件及校验值。也可用 `python -X utf8 scripts/validate_plugin.py --tag v2.3.0` 在本地检查拟用标签。
 3. 提交源码并创建指向该提交的 Git 标签。在 GitHub 创建并发布该标签对应的 Release，按真实改动填写发布说明。
 4. `release.yml` 接收已有 Release 的 `published` 事件，检出该标签，重新匹配两个 manifest、运行测试和构建，然后将两个 ZIP 与 `SHA256SUMS` 上传到这次 Release。
 5. 确认 Release 中三个附件可下载，校验哈希，并以独立安装目录检查离线安装及联网更新路径。
@@ -49,3 +49,13 @@ Actions 使用 [actions/checkout v4](https://github.com/actions/checkout/tree/v4
 ## 素材分类整理模块
 
 `organize_media.py` 负责真实扫描与可核验抽帧，`organize.py` 负责 review 约束、分类计划与复制；语义分类来自 Codex 实际查看画面。修改任一阶段时同时验证 stale inventory/review、坏视频、重复来源、路径边界、同名冲突与重跑，以及源文件哈希不变。运行 `tests/test_organize_media.py` 的真实媒体用例需 FFmpeg/ffprobe；缺少依赖时跳过不等于媒体功能通过。不得把测试用的图像、视频、个人路径或视觉审阅结果提交到源码库。分类参考文档是使用入口，CLI 有变化必须同步。
+
+## 从公开教学维护知识库
+
+优先批量读取官方公开字幕与文字，避免逐页打开播放器；研究页面保持静音，用户要求安静时不外放。若使用 B 站公开接口，先核对实际响应的发布者、视频身份、分 P 与 cid，再读取允许访问的字幕；接口有字幕索引不代表正文读取成功。保存本次响应状态和读取范围，登录、权限、风控或付费限制出现时停止相应请求，不提取用户 Cookie 或绕过限制。
+
+来源条目区分“已读完整可得字幕”“有限说明/片段”“仅索引”；检索摘要、标题、目录不能升级为完整课程学习。实际阅读原文后用自己的话写少量方法，分别注明来源事实和 shadow 迁移建议。原始字幕和课程素材只保留在研究工作目录，不提交到公共仓库或安装包。
+
+新的方法应改变一个具体选择：何时使用、执行什么、怎样验收、何时不用；在相关工作流加入入口，并说明脚本、Premiere 原生与待验证范围。来源所演示的旧软件、固定参数和设备信息须重新核对，不能转成通用强制标准。知识文档的修改不等于自动实现了音频效果或界面控制。
+
+知识更新用代表性任务进行行为评估：宣传快剪、顺序教学、纪实关系、带 sidecar 的相机卡和静音音频任务。核对是否读到相关卡、是否产生具体剪辑决定、是否保留源文件与真实关系，以及是否准确报告未试听/未执行部分；不要仅用关键词出现次数代替效果检查。

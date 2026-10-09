@@ -13,7 +13,7 @@
   <a href="https://github.com/Sh4d0W0728/shadow/releases"><img src="docs/assets/release-notes.svg" width="180" height="50" alt="查看版本记录"></a>
 </p>
 
-<p align="center"><sub>v2.2.0 · Codex 插件 · Premiere Pro · Windows 优先 · MIT</sub></p>
+<p align="center"><sub>v2.3.0 · Codex 插件 · Premiere Pro · Windows 优先 · MIT</sub></p>
 
 ---
 
@@ -69,6 +69,22 @@ $shadow 整理 D:\拍摄原片，放到 E:\项目\整理素材。
 | **生活与社交 · 4** | 婚礼故事 / 知识资讯 / 销售转化 / 个人旅行。围绕人物、信息、行动目标与真实体验展开。 |
 
 每个领域都配有必要输入、结构起点、转场动机、字幕与标题策略、交付物和质量关卡。[浏览领域库 →](shadow/skills/shadow/references/domains.md)
+
+## 从公开教学，走到每一个剪辑决定
+
+**18 个专题，接入完整成片流程。** 知识来源扩展到影视飓风公开教学、Frame.io 的剪辑师访谈与原创教学、EditMentor 和 Adobe 官方文档。每项保留来源与实际阅读范围，按“何时使用 → 怎样执行 → 怎样检查”整理。
+
+| 方法库 | shadow 怎样用到你的素材上 |
+| :--- | :--- |
+| **叙事与剪口 · 4** | 带时间码的选片、采访原意、动作接剪、声音桥与有意义的停顿 |
+| **Premiere 精修 · 6** | 三点编辑、多机位、色彩匹配、对白修复、音乐闪避、字幕与标题 |
+| **影视飓风学习卡 · 8** | 镜头意义、蒙太奇、宣传目标、节奏密度、人声动态、源包与归档 |
+
+先建立可追溯镜头库，再组织段落；精剪按故事、剪口、节奏、声音、色彩、文字逐轮解决问题，最后从观众角度复核。宣传片、活动快剪、课程、采访纪实、MV 和人物故事使用不同的组织方式。重要决定和修改结果留在项目计划中，方便继续做。
+
+[从素材到成片 →](shadow/skills/shadow/references/editorial-playbook.md) · [叙事与剪口 →](shadow/skills/shadow/references/story-craft.md) · [Premiere 精修 →](shadow/skills/shadow/references/premiere-craft.md) · [影视飓风来源 →](shadow/skills/shadow/references/mediastorm.md)
+
+影视飓风部分已阅读 4 条完整可得公开字幕，另收录 1 份官方快捷键功能清单；其他来源为实际读到的官方正文或作者教学。未取得正文的课程只列为待学。方法整理与软件操作建议不代表作者合作或认证；本次未逐帧观看所有案例或进行听感验收，复杂原生精修仍需在实际 Premiere 工程中执行和验证。
 
 ## 快速开始
 
@@ -171,7 +187,7 @@ $shadow 把这套录屏和讲稿整理成网络课程。
 ```powershell
 python -X utf8 scripts/validate_plugin.py
 python -X utf8 -m unittest discover -s tests -v
-python -X utf8 scripts/build_release.py --tag v2.2.0
+python -X utf8 scripts/build_release.py --tag v2.3.0
 ```
 
 提交和 PR 会运行 Windows / Ubuntu 校验。发布 Release 后，工作流核对版本并生成两个 ZIP 与 SHA-256 清单。安装 ZIP 只包含使用所需文件，开发脚本和测试在源码仓库中。结构检查通过不代替实际媒体、声音或 Premiere 验收。

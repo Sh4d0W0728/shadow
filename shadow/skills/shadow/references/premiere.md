@@ -31,3 +31,9 @@
 J/L-cut、多轨混音、自动 ducking、降噪、精细调色、遮罩、分屏、速度渐变、稳定和追踪需使用实际可用的 PR 功能，并逐段观看/试听。技巧库提供选用条件与检查点，不把技巧条目等同于自动效果代码。图层的淡入淡出若报告 XML 未迁移，须在 PR 中补回。
 
 报告分别写：脚本结构验证、实际渲染/解码、视觉与声音抽查、PR 导入/保存/重开。未执行的检查如实保持待验证。
+
+## 归档与继续剪辑
+
+按 [公开教学知识库 MS07–MS08](mediastorm.md) 分开保存拍摄源包、工作副本和交付版本。需要工程收集时，Premiere 的 `File > Project Manager` → `Collect Files and Copy to New Location` 可生成指向新媒体目录的工程；是否勾选 `Exclude Unused Clips` 由交付范围决定，通常关闭 `Rename Media Files To Match Clip Names` 保留原名。收集完成后重新打开新工程检查离线媒体；本说明不意味着 shadow 已自动操作该界面。[Adobe 官方操作](https://helpx.adobe.com/premiere/desktop/organize-media/create-projects/copy-project.html)
+
+代理用于剪辑流畅度，不能替代原片。按实际版本创建并单独存放；导出前确认是否开启 `Use Proxies`，默认全分辨率导出仍要检查源媒体在线和最终规格。高质量母版与轻量审片版采用可辨识的规格、版本名称。[创建代理](https://helpx.adobe.com/premiere/desktop/organize-media/ingest-proxy-workflow/create-proxies.html) · [导出代理规则](https://helpx.adobe.com/premiere/desktop/organize-media/ingest-proxy-workflow/export-proxies.html)

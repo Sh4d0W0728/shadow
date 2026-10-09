@@ -1,6 +1,6 @@
 {
   "name": "shadow",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "实际查看原始视频、按内容分类编号并整理到指定文件夹；20个剪辑领域结合包图网补材、Premiere时间线、转场、音频与文稿校正SRT、标题及成片核验。",
   "author": {
     "name": "shadow contributors"
