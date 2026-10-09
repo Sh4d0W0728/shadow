@@ -27,6 +27,14 @@ python -X utf8 "<技能目录>/scripts/shadow.py" inspect "<素材目录>" --rec
 
 ## 场景和静音候选
 
+研究参考成片时，可一次准备全片接触表、候选前后帧和音轨信号报告：
+
+```powershell
+python -X utf8 "<技能目录>/scripts/analyze_reference.py" "<参考片.mp4>" --out "<任务目录>/参考分析新目录" --interval 3 --pairs 24
+```
+
+该工具使用 Python 标准库、FFmpeg/ffprobe，全程不播放。输出目录必须不存在；不提供覆盖选项。报错输出诊断并返回非零退出码。报告仅检查首个视频/音频流；必须实际看图才能形成内容结论。详情见 [参考片研究](reference-study.md)。
+
 ```powershell
 python -X utf8 "<技能目录>/scripts/shadow.py" scenes "<素材.mp4>" --threshold 0.30 --min-gap 1.0 --output "<任务目录>/scene-candidates.json"
 python -X utf8 "<技能目录>/scripts/shadow.py" silence "<素材.mp4>" --noise-db -35 --min-duration 0.4 --output "<任务目录>/silence-candidates.json"

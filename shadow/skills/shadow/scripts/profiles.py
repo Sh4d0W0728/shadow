@@ -95,7 +95,7 @@ def create_brief(profile, args):
              'deliverables': profile['deliverables'], 'quality_gates': profile['quality_gates'],
              'material_identity': {'subject': None, 'approved_sources': [], 'mandatory_moments': [], 'excluded_material': []},
              'editorial_decisions': {'audience_goal': None, 'story_beats': [], 'selected_shots': [],
-                                    'material_gaps': [], 'rhythm_sections': [], 'transition_motives': [],
+                                    'material_gaps': [], 'reference_studies': [], 'rhythm_sections': [], 'transition_motives': [],
                                     'audio_plan': [], 'color_plan': [], 'subtitle_review': [], 'review_passes': []},
              'status': 'brief_requires_actual_inputs_and_editorial_decisions'}
     # Do not overwrite an existing brief, including an existing timeline passed accidentally.

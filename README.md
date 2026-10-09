@@ -13,7 +13,7 @@
   <a href="https://github.com/Sh4d0W0728/shadow/releases"><img src="docs/assets/release-notes.svg" width="180" height="50" alt="查看版本记录"></a>
 </p>
 
-<p align="center"><sub>v2.3.0 · Codex 插件 · Premiere Pro · Windows 优先 · MIT</sub></p>
+<p align="center"><sub>v2.4.0 · Codex 插件 · Premiere Pro · Windows 优先 · MIT</sub></p>
 
 ---
 
@@ -85,6 +85,14 @@ $shadow 整理 D:\拍摄原片，放到 E:\项目\整理素材。
 [从素材到成片 →](shadow/skills/shadow/references/editorial-playbook.md) · [叙事与剪口 →](shadow/skills/shadow/references/story-craft.md) · [Premiere 精修 →](shadow/skills/shadow/references/premiere-craft.md) · [影视飓风来源 →](shadow/skills/shadow/references/mediastorm.md)
 
 影视飓风部分已阅读 4 条完整可得公开字幕，另收录 1 份官方快捷键功能清单；其他来源为实际读到的官方正文或作者教学。未取得正文的课程只列为待学。方法整理与软件操作建议不代表作者合作或认证；本次未逐帧观看所有案例或进行听感验收，复杂原生精修仍需在实际 Premiere 工程中执行和验证。
+
+## 从高播放成片，学到可以落地的剪法
+
+**5 部成片，带时间点的画面观察与实际音轨测量。** 包括何同学的 5G / 毕业作品、8KRAW《盛世中华》、Links 的冰岛旅行片和 Apple《小蒜头》。研究快慢段落、信息揭示、首尾回收、对白字幕与地点标题；保留来源、播放量日期和已查看范围。
+
+新增静音参考片分析器：本地视频 → 全片采样接触表 → 场景变化候选及前后帧 → 逐秒音轨电平 / 近静音区间。Codex 实际看图后，把适用方法对应到用户素材的入出点，制作时间线与小样，并检查变化。算法候选不充当已确认剪点，音频测量不充当听感验收。
+
+[查看 5 部成片案例 →](shadow/skills/shadow/references/finished-films.md) · [从参考片到实剪 →](shadow/skills/shadow/references/reference-study.md)
 
 ## 快速开始
 
@@ -187,7 +195,7 @@ $shadow 把这套录屏和讲稿整理成网络课程。
 ```powershell
 python -X utf8 scripts/validate_plugin.py
 python -X utf8 -m unittest discover -s tests -v
-python -X utf8 scripts/build_release.py --tag v2.3.0
+python -X utf8 scripts/build_release.py --tag v2.4.0
 ```
 
 提交和 PR 会运行 Windows / Ubuntu 校验。发布 Release 后，工作流核对版本并生成两个 ZIP 与 SHA-256 清单。安装 ZIP 只包含使用所需文件，开发脚本和测试在源码仓库中。结构检查通过不代替实际媒体、声音或 Premiere 验收。
