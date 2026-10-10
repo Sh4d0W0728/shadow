@@ -8,6 +8,11 @@
 <p align="center"><strong>把常用剪辑经验，变成随时可调用的工作流。</strong><br>素材整理 · 包图网补材 · 时间线 · 字幕与标题 · Premiere 交付</p>
 
 <p align="center">
+  <a href="https://shadow-cinematic.wsd4513.chatgpt.site"><strong>✦ 访问 shadow 宣传网页 →</strong></a><br>
+  <sub>浏览剪辑工作流、影片类型与示例指令，并下载最新版插件。</sub>
+</p>
+
+<p align="center">
   <a href="https://github.com/Sh4d0W0728/shadow/releases/latest/download/shadow.zip"><img src="docs/assets/download.svg" width="180" height="50" alt="下载最新版 shadow.zip"></a>
   <a href="#快速开始"><img src="docs/assets/quickstart.svg" width="180" height="50" alt="查看安装与更新步骤"></a>
   <a href="https://github.com/Sh4d0W0728/shadow/releases"><img src="docs/assets/release-notes.svg" width="180" height="50" alt="查看版本记录"></a>
